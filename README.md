@@ -1,2 +1,6 @@
 # WifiScanner
-For ATTsn
+
+Instructions:
+clone repository
+pip install pyspeedtest
+
