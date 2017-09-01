@@ -4,6 +4,25 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import pyspeedtest
 
+class Results(object):
+    def __init__(self):
+        self.ping = 0
+        self.download = 0
+        self.upload = 0
+
+    def scan():
+        try:
+            st = pyspeedtest.SpeedTest()
+            ping = st.ping()
+            download = st.download()
+            upload = st.upload()
+            result = results(ping, download, upload)
+            return result
+        except:
+            print("Error")
+
+    def average(
+
 def main():
     # Requires Editing
     user = "TYPE YOUR USER HERE"
@@ -22,16 +41,7 @@ def main():
     print("Device: ", device)
     location = dorm + "-" + str(input("Room number:"))
     
-    #Start Scan
-    print("Scan starting!")
-    st = pyspeedtest.SpeedTest()
-    ping = st.ping()
-    print("Ping: ", ping)
-    download = st.download()
-    print("Download: ", download)
-    upload = st.upload()
-    print("Upload: ", upload)
-
+     
 
 
 if __name__ == "__main__":
