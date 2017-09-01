@@ -4,11 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import pyspeedtest
 
-class Results(object):
+class Scanner(object):
     def __init__(self):
-        self.ping = 0
-        self.download = 0
-        self.upload = 0
+        self.listPing = []
+        self.listDownload = []
+        self.listUpload = []
 
     def scan():
         try:
@@ -16,12 +16,36 @@ class Results(object):
             ping = st.ping()
             download = st.download()
             upload = st.upload()
-            result = results(ping, download, upload)
-            return result
+
+            listPing.append(ping)
+            listDownload.append(download)
+            listUpload.append(upload)
         except:
             print("Error")
 
-    def average(
+    def average(aList):
+		total = 0
+		for num in aList:
+			total = total + num 
+		return total/len(aList)
+
+
+    def fullScan(num):
+    	for n in range(num):
+    		scan()
+
+    	print("Ping: ", average(listPing))
+    	print("Download: ", average(listDownload))
+    	print("Upload: ", average(listUpload))
+
+
+
+
+
+
+
+
+
 
 def main():
     # Requires Editing
