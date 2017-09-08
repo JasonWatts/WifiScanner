@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import pyspeedtest
-from lxml import html
 import requests
+from lxml import html
+from bs4 import BeautifulSoup
 
 def main():
     # Requires Editing
@@ -32,8 +33,9 @@ def main():
     # WAP Data
     page = requests.get(meraki)
     content = html.fromstring(page.content)
-    device = content.xpath('//*[@id="device_name"]/text()')
-    print("Device: ", device)
+    soup = BeautifulSoup(content, 'html.parser')
+    print(soup.prettify())
+
 
 if __name__ == "__main__":
     main()
