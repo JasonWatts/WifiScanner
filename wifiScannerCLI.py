@@ -2,7 +2,6 @@
 import pyspeedtest
 import requests
 from lxml import html
-from bs4 import BeautifulSoup
 
 def main():
     # Requires Editing
@@ -33,8 +32,6 @@ def main():
     # WAP Data
     page = requests.get(meraki)
     content = html.fromstring(page.content)
-    soup = BeautifulSoup(content, 'html.parser')
-    print(soup.prettify())
 
 
 if __name__ == "__main__":
