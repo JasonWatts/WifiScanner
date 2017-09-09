@@ -1,3 +1,5 @@
+# Wifi Scanner Setup
+
 # Python Dependencies Setup
 while read p; do
   pip install $p

@@ -2,7 +2,13 @@
 import pyspeedtest
 import requests
 from lxml import html
-
+'''
+speed
+access point name
+utilization
+channel
+signal db
+'''
 def main():
     # Requires Editing
     user = "jsolum"
@@ -32,7 +38,7 @@ def main():
     # WAP Data
     page = requests.get(meraki)
     content = html.fromstring(page.content)
-
+    
 
 if __name__ == "__main__":
     main()
