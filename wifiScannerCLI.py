@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import pyspeedtest
 import requests
+import json
 from lxml import html
 '''
 speed
@@ -9,6 +10,7 @@ utilization
 channel
 signal db
 '''
+
 def main():
     # Requires Editing
     user = "jsolum"
@@ -18,7 +20,10 @@ def main():
    
     # Helpful Sites
     meraki = 'http://my.meraki.com/#connection'
-
+    merakiJson= 'http://my.meraki.com/index.json?t=*'
+    wap = requests.get(merakiJson).json()
+    node_name = wap['config']['node_name']
+'''
     #User input
     print("Wifi Scanner")
     print("User: ", user)
@@ -34,10 +39,8 @@ def main():
     print("Ping: ", ping)
     print("Download: ", download)
     print("Upload: ", upload)
-
+'''
     # WAP Data
-    page = requests.get(meraki)
-    content = html.fromstring(page.content)
     
 
 if __name__ == "__main__":
