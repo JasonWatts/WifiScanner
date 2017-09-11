@@ -2,5 +2,9 @@
 
 Instructions:
 clone repository
-pip install pyspeedtest
+'''
+chmod +x setup.sh
+./setup.sh
+python3 wifiScannerCli.py
+'''
 
