@@ -40,16 +40,17 @@ def main():
     print("Upload: ", upload)
     
     # WAP Data
-    wap = requests.get(merakiJson).json()
-    wapName = wap['config']['node_name']
-    # utilization = wap[  NOT SURE WHAT THIS IS
-    # channel =  NOT SURE WHAT THIS IS
-    signalDb = wap['client']['rssi']
-
-    print("Access Point: ", wapName)
-    print("rssi: ", signalDb)
-    
-
+    try: 
+        wap = requests.get(merakiJson).json()
+        wapName = wap['config']['node_name']
+        # utilization = wap[  NOT SURE WHAT THIS IS
+        # channel =  NOT SURE WHAT THIS IS
+        signalDb = wap['client']['rssi']
+        print("Access Point: ", wapName)
+        print("rssi: ", signalDb)
+    except:
+        print("ERROR: ", wap)
+        
 if __name__ == "__main__":
     main()
 

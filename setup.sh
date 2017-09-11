@@ -2,6 +2,6 @@
 
 # Python Dependencies Setup
 while read p; do
-  pip install $p
-done <dependencies.txt
+  python3 -m pip install $p
+done <requirements.txt
 

@@ -1,2 +1,0 @@
-pyspeedtest
-bs4
