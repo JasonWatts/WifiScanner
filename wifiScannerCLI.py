@@ -22,7 +22,12 @@ def main():
     meraki = 'http://my.meraki.com/#connection'
     merakiJson= 'http://my.meraki.com/index.json?t=*'
     wap = requests.get(merakiJson).json()
-    node_name = wap['config']['node_name']
+    
+    wapName = wap['config']['node_name']
+    utilization = wap[ 
+    channel = 
+    signalDb = 
+
 '''
     #User input
     print("Wifi Scanner")
