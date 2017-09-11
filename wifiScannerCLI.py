@@ -3,52 +3,47 @@ import pyspeedtest
 import requests
 import json
 from lxml import html
-'''
-speed
-access point name
-utilization
-channel
-signal db == rssi
-'''
+
 def main():
-    # Helpful Sites
-    meraki = 'http://my.meraki.com/#connection'
-    merakiJson= 'http://my.meraki.com/index.json?t=*'
-   
-   # Requires Editing
+    meraki= 'http://my.meraki.com/index.json?t=*'
     user = "jsolum"
     device = "Mac desktop or laptop"
 
     #User input
-    print("Wifi Scanner")
-    print("User: ", user)
-    print("Device: ", device)
-    dorm = str(input("Dorm: "))
-    location = dorm + "-" + str(input("Room number: "))
-   
-    try:  
+    #print("Wifi Scanner")
+    #print("User: ", user)
+    #print("Device: ", device)
+    #dorm = str(input("Dorm: "))
+    #location = dorm + "-" + str(input("Room number: "))
+
+    try: # Speed Test  
         st = pyspeedtest.SpeedTest()
         ping = round(st.ping(), 2)
         download = round(st.download() / 1000000, 2)
         upload = round(st.upload() / 1000000, 2)
-
-        print("Ping: ", ping)
-        print("Download: ", download)
-        print("Upload: ", upload)
+        
+        #print("Ping:", ping)
+        #print("Download:", download)
+        #print("Upload:", upload)
     except Exception:
-        print("ERROR:")
+        print("ERROR: speedtest failed")
 
-    # WAP Data
-    try: 
-        wap = requests.get(merakiJson).json()
+    try: # Access Point Data
+        wap = requests.get(meraki).json()
         wapName = wap['config']['node_name']
-        # utilization = wap[  NOT SURE WHAT THIS IS
-        # channel =  NOT SURE WHAT THIS IS
         signalDb = wap['client']['rssi']
-        print("Access Point: ", wapName)
-        print("rssi: ", signalDb)
+        #print("Access Point: ", wapName)
+        #print("rssi: ", signalDb)
     except:
-        print("ERROR: Getting Wap Info")
+        print("ERROR: can't connect to access point")
+
+
+    prof_rc = wap['radio_stats']['prof_rc']
+    print(prof_rc)
+    prof_cc = wap['radio_stats']['prof_cc']
+    print(prof_cc)
+    #answer = (100* prof_rc)/prof_cc
+    #print("Utilization:", answer)
         
 if __name__ == "__main__":
     main()
