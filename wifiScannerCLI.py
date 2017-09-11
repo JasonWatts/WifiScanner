@@ -10,20 +10,6 @@ utilization
 channel
 signal db == rssi
 '''
-
-def scan():
-    try:  
-        st = pyspeedtest.SpeedTest()
-        ping = round(st.ping(), 2)
-        download = round(st.download() / 1000000, 2)
-        upload = round(st.upload() / 1000000, 2)
-
-        print("Ping: ", ping)
-        print("Download: ", download)
-        print("Upload: ", upload)
-    except RuntimeError as e:
-        print("Error: ", e)
-
 def main():
     # Helpful Sites
     meraki = 'http://my.meraki.com/#connection'
@@ -40,7 +26,17 @@ def main():
     dorm = str(input("Dorm: "))
     location = dorm + "-" + str(input("Room number: "))
    
-    scan() 
+    try:  
+        st = pyspeedtest.SpeedTest()
+        ping = round(st.ping(), 2)
+        download = round(st.download() / 1000000, 2)
+        upload = round(st.upload() / 1000000, 2)
+
+        print("Ping: ", ping)
+        print("Download: ", download)
+        print("Upload: ", upload)
+    except Exception:
+        print("ERROR:")
 
     # WAP Data
     try: 
@@ -52,7 +48,7 @@ def main():
         print("Access Point: ", wapName)
         print("rssi: ", signalDb)
     except:
-        print("ERROR: ", wap)
+        print("ERROR: Getting Wap Info")
         
 if __name__ == "__main__":
     main()
