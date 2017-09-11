@@ -2,7 +2,7 @@
 
 # Python Dependencies Setup
 while read p; do
-  pip install $p
+  sudo pip3 install $p
 done <dependencies.txt
 
 echo "Dependencies Installed!"
