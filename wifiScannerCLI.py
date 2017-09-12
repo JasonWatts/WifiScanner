@@ -1,10 +1,8 @@
-#!/usr/bin/python
-import pyspeedtest
-import requests
-import json
+#!/usr/bin/env python3
+import pyspeedtest, requests, json
+from merakiJsonHandler import MerakiJsonHandler
 
 def main():
-    meraki= 'http://my.meraki.com/index.json?t=*'
     user = "jsolum"
     device = "Mac desktop or laptop"
 
@@ -21,30 +19,19 @@ def main():
         download = round(st.download() / 1000000, 2)
         upload = round(st.upload() / 1000000, 2)
         
-        #print("Ping:", ping)
-        #print("Download:", download)
-        #print("Upload:", upload)
-    except Exception:
-        print("ERROR: speedtest failed")
+        print("Ping:", ping)
+        print("Download:", download)
+        print("Upload:", upload)
+    except Exception as e:
+        print("Speedtest Error:", e)
 
     try: # Access Point Data
-        wap = requests.get(meraki).json()
-        wapName = wap['config']['node_name']
-        signalDb = wap['client']['rssi']
-        print("Access Point: ", wapName)
-        print("rssi: ", signalDb)
-    except:
-        print("ERROR: can't connect to access point")
+        ap = MerakiJsonHandler()
+        print("Name:", ap.config.node_name)
+        print("rssi:", ap.client.rssi)
+    except Exception as e:
+        print("Meraki Json Error:", e)
 
-    '''
-    prof_rc = wap['radio_stats'][0]['prof_rc']
-    print(prof_rc)
-    prof_cc = wap['radio_stats'][0]['prof_cc']
-    print(prof_cc)
-    answer = (100* prof_rc)/prof_cc
-    print("Utilization:", answer)
-    '''
-        
 if __name__ == "__main__":
     main()
 
