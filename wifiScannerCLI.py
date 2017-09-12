@@ -26,9 +26,9 @@ def main():
         print("Speedtest Error:", e)
 
     try: # Access Point Data
-        ap = MerakiJsonHandler()
-        print("Name:", ap.config.node_name)
-        print("rssi:", ap.client.rssi)
+        wap = MerakiJsonHandler()
+        print("Name:", wap.config.node_name)
+        print("rssi:", wap.client.rssi)
     except Exception as e:
         print("Meraki Json Error:", e)
 
