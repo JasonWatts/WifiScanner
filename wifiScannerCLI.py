@@ -2,7 +2,6 @@
 import pyspeedtest
 import requests
 import json
-from lxml import html
 
 def main():
     meraki= 'http://my.meraki.com/index.json?t=*'
