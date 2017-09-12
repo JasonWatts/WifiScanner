@@ -7,11 +7,11 @@ from types import SimpleNamespace
 class MerakiJsonHandler(object):
     def __init__(self):
         self.json = requests.get('http://my.meraki.com/index.json').json()
-        self.config = SimpleNamespace(**self.wap['config'])
-        self.client = SimpleNamespace(**self.wap['client'])
-        self.radio1 = SimpleNamespace(**self.wap['radio_stats'][0])
-        self.radio2 = SimpleNamespace(**self.wap['radio_stats'][1])
-        self.connection = SimpleNamespace(**self.wap['connection_state'])
+        self.config = SimpleNamespace(**self.json['config'])
+        self.client = SimpleNamespace(**self.json['client'])
+        self.radio1 = SimpleNamespace(**self.json['radio_stats'][0])
+        self.radio2 = SimpleNamespace(**self.json['radio_stats'][1])
+        self.connection = SimpleNamespace(**self.json['connection_state'])
 
     def utilization(self):
         prof_cc = self.radio['prof_cc']
