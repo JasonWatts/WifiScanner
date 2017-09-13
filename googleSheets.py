@@ -2,7 +2,7 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-class sheetsUpdater(object):
+class sheetsController(object):
     def __init__(self, url):
         self.scope = ['https://spreadsheets.google.com/feeds']
         self.credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)

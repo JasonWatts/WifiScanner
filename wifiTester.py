@@ -3,7 +3,8 @@ import pyspeedtest, requests, json
 from merakiJsonHandler import MerakiJsonHandler
 
 class wifiTester(object):
-    def __init__(self):
+    def __init__(self, verbose):
+        self.verbose = verbose 
         self.ping = none
         self.download = none
         self.upload =  none
@@ -22,7 +23,7 @@ class wifiTester(object):
         except Exception as e:
             print("Speedtest Error:", e)
 
-    def getWapData(self, verbose = True):
+    def getWapData(self, verbose=True):
         try: # Access Point Data
             self.wap = MerakiJsonHandler()
             if verbose: 
