@@ -27,6 +27,7 @@ def main():
     try: # Access Point Data
         wap = MerakiJsonHandler()
         print("Name:", wap.config.node_name)
+        # More stuff
         print("rssi:", wap.client.rssi)
     except Exception as e:
         print("Meraki Json Error:", e)
