@@ -18,7 +18,6 @@ def main():
         ping = round(st.ping(), 2)
         download = round(st.download() / 1000000, 2)
         upload = round(st.upload() / 1000000, 2)
-        
         print("Ping:", ping)
         print("Download:", download)
         print("Upload:", upload)
@@ -31,6 +30,7 @@ def main():
         print("rssi:", wap.client.rssi)
     except Exception as e:
         print("Meraki Json Error:", e)
+
 
 if __name__ == "__main__":
     main()
