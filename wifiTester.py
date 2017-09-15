@@ -19,7 +19,7 @@ class WifiTester(object):
         self.channel = 0
         self.rssi = 0
         self.utilization = 0
-        self.device = "Unknown"
+        self.name = "Unknown"
 
     def timeStamp(self):
         ts = calendar.timegm(time.gmtime())
