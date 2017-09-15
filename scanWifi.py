@@ -20,6 +20,7 @@ def handleArgs():
     parser.add_argument('-room', help='Room number. Will be appended to location')
     parser.add_argument('-device', default=defaults['device'], help='The device you are scanning with (i.e. Mac or PC)', choices=['Mac', 'Pc'])
     parser.add_argument('-loop', help='Allows you to repeat Wifi Scans.', action='store_true')
+    parser.add_argument('-save', help='If you want to save the data to Google Sheets.', action='store_true')
     parser.add_argument('-noRoom', help='Prevents Room prompt.', action='store_true')
     parser.add_argument('-verbose', action='store_true') 
     return parser.parse_args()
@@ -43,12 +44,14 @@ def main():
     googleSheets = SheetsController()
     print("\nSpeed Test Initialized")
     printInfo(args)
+
     while True:
         tester.getSpeedtest()
         tester.getWapData()
-        notes = input("\nNotes: ")
-        data = prepareData(tester, args, notes)
-        googleSheets.uploadData(data)
+        if args.save:
+            notes = input("\nNotes: ")
+            data = prepareData(tester, args, notes)
+            googleSheets.uploadData(data)
         if args.loop:
             print("----------------------\n")
             answer = input("Start new speed test? (y/n): ")
