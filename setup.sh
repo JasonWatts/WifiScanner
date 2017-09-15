@@ -10,13 +10,11 @@ echo 'Starting Setup...'
 } && {
 	printf 'Please provide Google Spread sheet url: '
 	read url
-	echo $url > info.txt
 	printf 'User (e.g. carmacost): '
 	read user
-	echo $user >> info.txt
-	printf 'Device (e.g. mac or pc): '
+	printf 'Device (e.g. Mac or Pc): '
 	read device
-	echo $device >> info.txt
+	printf '{\n"url": "%s",\n"user": "%s",\n"device": "%s"\n}' "$url" "$user" "$device" > info.json
 
 	printf '\nAwesome! You are done!  If you made any mistakes just run the setup script again :) \n\n'
 } || {
