@@ -23,8 +23,8 @@ class SheetsController(object):
 
     def uploadData(self, data):
         gc = gspread.authorize(self.credentials)
-        sheet = gc.open_by_url(self.sheetUrl).sheet1
         try:
+            sheet = gc.open_by_url(self.sheetUrl).sheet1
             sheet.insert_row(data, sheet.row_count+1)
             print("Data Sent!\n")
         except Exception as e:
