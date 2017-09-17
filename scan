@@ -16,7 +16,7 @@ def handleArgs():
     defaults = getDefaults()
     parser = argparse.ArgumentParser(description='ATTsn Wifi Scanner.')
     parser.add_argument('-user', default=defaults['user'], help='The first part of your westmont email address')
-    parser.add_argument('-location', required=True, help='Dorm or Building')
+    parser.add_argument('-location', help='Dorm or Building')
     parser.add_argument('-room', help='Room number of location')
     parser.add_argument('-device', default=defaults['device'], help='The device you are scanning with (i.e. Mac, Pc, Linux)')
     parser.add_argument('-loop', help='Loop scanner', action='store_true')
@@ -40,7 +40,7 @@ def main():
     args = handleArgs()
     if not args.room == None:
         args.location = args.location + "-" + args.room
-    tester = WifiTester()
+    tester = WifiTester(verbose=True)
     googleSheets = SheetsController()
     print("\nSpeed Test Initialized")
     printInfo(args)

@@ -4,7 +4,7 @@
 echo 'Starting Setup...'
 {
 	while read p; do
-	  python3 -m pip install $p
+	  pip3 install --user $p
 	done <requirements.txt
 
 } && {

@@ -5,8 +5,8 @@ import pyspeedtest
 from merakiJsonHandler import MerakiJsonHandler
 
 class WifiTester(object):
-    def __init__(self):
-        self.verbose = True 
+    def __init__(self, verbose=True):
+        self.verbose = verbose
         # Speed Test    
         self.time = 0
         self.ping = 0
@@ -19,7 +19,7 @@ class WifiTester(object):
         self.channel = 0
         self.rssi = 0
         self.utilization = 0
-        self.name = "Unknown"
+        self.device = "Unknown"
 
     def timeStamp(self):
         ts = calendar.timegm(time.gmtime())
@@ -48,8 +48,10 @@ class WifiTester(object):
             self.name= self.wap.config.node_name
             if self.verbose: 
                 self.printWapData()
-        except Exception as e:
+        except IOError as e:
             print("Meraki Json Error:", e)
+        except KeyError:
+            print("Not Connected", end ="\r")
 
     def printWapData(self):
         print("\nWAP Data:")
